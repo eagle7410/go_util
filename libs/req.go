@@ -2,6 +2,7 @@ package lib
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 )
@@ -74,4 +75,8 @@ func SendJson403(w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusForbidden)
 	w.Write([]byte("{\"message\" : \"Access denied\"}"))
+}
+
+func Ping(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "PONG \n  IP: %v\n  Host: %v\n", ReadUserIP(r), r.Host)
 }
