@@ -6,12 +6,13 @@ type (
 		IsDev *bool
 	}
 	InsertEnv interface {
-		GetAllowedMethods () *[]string
+		GetAllowedMethods () []string
 		GetIsDev () * bool
 	}
 )
 func (i *env) SetEnv (data InsertEnv) {
-	i.AllowedMethods = data.GetAllowedMethods()
+	methods := data.GetAllowedMethods()
+	i.AllowedMethods = &methods
 	i.IsDev = data.GetIsDev()
 }
 
