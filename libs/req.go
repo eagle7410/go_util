@@ -30,8 +30,12 @@ func SetCorsMiddleware(handler http.Handler) http.HandlerFunc {
 	})
 }
 
-func SetCors(w http.ResponseWriter, _ *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+func SetCors(w http.ResponseWriter, r *http.Request) {
+	if (*Env.IsCorsAllowCredentials) {
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+	}
+
+	w.Header().Set("Access-Control-Allow-Origin", r.Header.Get("Origin"))
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Access-Control-Allow-Methods", strings.Join(*Env.AllowedMethods, ","))
 }
