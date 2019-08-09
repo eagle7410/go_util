@@ -35,7 +35,7 @@ func OpenDailyRotateLogFile() () {
 
 	go func() {
 		time.Sleep(diff)
-		OpenLogFile()
+		OpenDailyRotateLogFile()
 	}()
 }
 
