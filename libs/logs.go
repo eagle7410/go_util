@@ -12,6 +12,36 @@ const logfile = "development.log"
 
 var logFileName string
 
+func OpenDailyRotateLogFile() () {
+	if err := MustDir("./logs", 0777); err != nil {
+		log.Fatalf("Mkdir logs error %v", err)
+	}
+
+	now  := time.Now()
+	next := time.Date(now.Year(),now.Month(),now.Day() + 1,0,0,0 , 0, now.Location())
+
+	diff := next.Sub(now);
+
+	fmt.Printf("diff is %v ", diff)
+
+	logFileName = now.Format("2006-01-02") + "_" + logfile
+
+	fmt.Printf("Logging to file %v\n", logFileName)
+
+	lf, err := os.OpenFile("./logs/"+logFileName, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0640)
+
+	if err != nil {
+		log.Fatalf("OpenLogfile: os.OpenFile: %s", err)
+	}
+
+	log.SetOutput(lf)
+
+	go func() {
+		time.Sleep(diff)
+		OpenLogFile()
+	}()
+}
+
 func OpenLogFile() {
 	t := time.Now()
 	oldFileName := logFileName
