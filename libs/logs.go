@@ -19,10 +19,7 @@ func OpenDailyRotateLogFile() () {
 
 	now  := time.Now()
 	next := time.Date(now.Year(),now.Month(),now.Day() + 1,0,0,0 , 0, now.Location())
-
 	diff := next.Sub(now);
-
-	fmt.Printf("diff is %v ", diff)
 
 	logFileName = now.Format("2006-01-02") + "_" + logfile
 
