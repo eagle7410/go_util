@@ -65,6 +65,23 @@ func OpenLogFile() {
 	}
 }
 
+func LogRequestWithoutReopenFile(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		SetCors(w, r)
+
+		if r.Method == "OPTIONS" {
+			return
+		}
+
+		if *Env.IsDev {
+			log.Printf("req %s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+			fmt.Printf("req %s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+		}
+
+		handler.ServeHTTP(w, r)
+	})
+}
+
 func LogRequest(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		SetCors(w, r)
