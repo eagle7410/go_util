@@ -70,9 +70,11 @@ func LogRequestWithoutReopenFile(handler http.Handler) http.Handler {
 			return
 		}
 
+		realIp := ReadUserIP(r);
+
 		if *Env.IsDev {
-			log.Printf("req %s %s %s\n", r.RemoteAddr, r.Method, r.URL)
-			fmt.Printf("req %s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+			log.Printf("Requet %s %s %s %s\n", r.RemoteAddr, realIp, r.Method, r.URL)
+			fmt.Printf("Requet %s %s %s %s\n", r.RemoteAddr, realIp, r.Method, r.URL)
 		}
 
 		handler.ServeHTTP(w, r)
