@@ -84,3 +84,18 @@ func SendJson403(w http.ResponseWriter) {
 func Ping(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "PONG \n  IP: %v\n  Host: %v\n", ReadUserIP(r), r.Host)
 }
+
+func IsIpFrom(rip string, ips *[]string) bool {
+	for _, ip := range *ips {
+
+		if len(ip) > len(rip) {
+			continue
+		}
+
+		if ip == rip[:len(ip)] {
+			return true
+		}
+	}
+
+	return false
+}

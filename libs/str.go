@@ -13,3 +13,13 @@ func FirstToLower (val *string) string {
 	str := *val
 	return strings.ToLower(str[:1]) + str[1:]
 }
+
+func IsHasStringInArray(find *string, arr *[]string) bool {
+	for _, iter := range *arr {
+		if *find == iter {
+			return true
+		}
+	}
+
+	return false
+}
