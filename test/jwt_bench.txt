@@ -1,0 +1,63 @@
+// Use json convert string
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  143767	      7965 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.235s
+
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  156019	      7812 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	2.309s
+
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  142233	      8199 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.257s
+
+// Use json convert arrByte
+
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  140722	      7789 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.188s
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  149900	      7852 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.264s
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  144650	      8034 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.251s
+
+// Use interface. Not use, has problem with parse unpack result.
+
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  155527	      7372 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.230s
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  152451	      7492 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.227s
+goos: linux
+goarch: amd64
+pkg: github.com/eagle7410/go_util/test
+BenchmarkJwtPack-16    	  172082	      7499 ns/op
+PASS
+ok  	github.com/eagle7410/go_util/test	1.367s
