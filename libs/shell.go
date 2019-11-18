@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const ErrorMesssageCommandDeadline = "Deadline exceeded"
+const ErrorMessageCommandDeadline = "Deadline exceeded"
 
 func ExecCommandWithTimeLimit(timeLimit time.Duration, workDir string, base string, args ...string) ([]byte, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), timeLimit)
@@ -20,7 +20,7 @@ func ExecCommandWithTimeLimit(timeLimit time.Duration, workDir string, base stri
 	out, err := cmd.CombinedOutput()
 
 	if ctx.Err() == context.DeadlineExceeded {
-		return out, fmt.Errorf("%v for %v %v", ErrorMesssageCommandDeadline, base, strings.Join(args, " "))
+		return out, fmt.Errorf("%v for %v %v", ErrorMessageCommandDeadline, base, strings.Join(args, " "))
 	}
 
 	return out, err
