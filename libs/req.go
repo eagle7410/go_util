@@ -7,6 +7,15 @@ import (
 	"strings"
 )
 
+const (
+	HeaderValueContentTypeJson = "application/json"
+	HeaderValueContentTypeWwwForm = "application/x-www-form-urlencoded"
+	HeaderAccept = "Accept"
+	HeaderContentType = "Content-Type"
+	HeaderContentLength = "Content-Length"
+	HeaderContentDisposition =  "Content-Disposition"
+)
+
 func ReadUserIP(r *http.Request) string {
 	IPAddress := r.Header.Get("X-Real-Ip")
 	if IPAddress == "" {
