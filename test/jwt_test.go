@@ -3,8 +3,8 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	u "github.com/eagle7410/go_util/libs"
 	. "github.com/smartystreets/goconvey/convey"
+	u "go_util/libs"
 	"testing"
 	"time"
 )
@@ -13,6 +13,7 @@ type transfer struct {
 	Message string `json:"message"`
 	Phrase  string `json:"phrase"`
 }
+
 var data transfer = transfer{
 	Message: "Message",
 	Phrase:  "Test",
@@ -21,9 +22,10 @@ var data transfer = transfer{
 var secret []byte = []byte("12345qwerty")
 var tokenString string
 var err error
+
 func TestJWT(t *testing.T) {
 	Convey("Jwt pack", t, func() {
-		tokenString, err = u.JwtPackStruct(&data, &secret, time.Minute * 2)
+		tokenString, err = u.JwtPackStruct(&data, &secret, time.Minute*2)
 		So(err, ShouldBeNil)
 		So(len(tokenString), ShouldBeGreaterThan, 0)
 		fmt.Printf("token string is %v", tokenString)
@@ -43,6 +45,6 @@ func TestJWT(t *testing.T) {
 
 func BenchmarkJwtPack(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = u.JwtPackStruct(&data, &secret, time.Minute * 2)
+		_, _ = u.JwtPackStruct(&data, &secret, time.Minute*2)
 	}
 }
