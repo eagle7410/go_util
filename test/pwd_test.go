@@ -74,7 +74,7 @@ func TestTools(t *testing.T) {
 
 		salt, hash := drive.GetSaltHash()
 
-		So(len(salt), ShouldEqual, lib.PwdGeneSaltLen)
+		So(len(salt), ShouldEqual, lib.PwdConverterSaltLen)
 		So(len(hash), ShouldEqual, lib.PwdConverterKeyLen)
 
 		drive2 := lib.PasswordConverter{}
