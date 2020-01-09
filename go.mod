@@ -1,4 +1,4 @@
-module go_util
+module github.com/eagle7410/go_util 
 
 go 1.13
 
